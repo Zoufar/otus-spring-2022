@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="personDao" class="hw1testforstudents.dao.PersonDaoImpl"></bean>
+    <bean id="personService" class="hw1testforstudents.service.PersonServiceImpl">
+        <constructor-arg name="dao" ref="personDao"/>
+    </bean>
+    <!-- ... в TestImpl заменить на поле, задаваемое здесь -->
+    <bean id="test" class="hw1testforstudents.service.PerformTestingImpl">
+        <property name="fileNameCSV" value="testQuestions.csv"/>
+    </bean>
+
+    <bean id="studentTest" class="hw1testforstudents.StudentTestImpl">
+        <constructor-arg name="studentService" ref="personService"/>
+        <constructor-arg name="test" ref="test"/>
+    </bean>
+
+</beans>
