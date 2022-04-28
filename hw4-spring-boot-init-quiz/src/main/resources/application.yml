@@ -1,0 +1,4 @@
+
+application:
+  file-name-csv: testQuestions.csv
+  pass-threshold: 3
