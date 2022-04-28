@@ -2,6 +2,7 @@ package ru.otus.hw2testforstudents.service;
 
 import org.springframework.stereotype.Service;
 import ru.otus.hw2testforstudents.domain.Person;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +11,12 @@ public class QuizPerformerImpl implements QuizPerformer {
 
     private final IOService ioService;
 
-    public QuizPerformerImpl (IOService ioService){
+    public QuizPerformerImpl(IOService ioService) {
         this.ioService = ioService;
     }
 
-    public List<String> performQuiz(Person person){
-        ioService.outputString("Hi "+ person.getName() +" "+ person.getSurname()
+    public List<String> performQuiz(Person person) {
+        ioService.outputString("Hi " + person.getName() + " " + person.getSurname()
                 + ", please answer following questions: ");
         List<String> result = new ArrayList<>();
 
@@ -32,9 +33,9 @@ public class QuizPerformerImpl implements QuizPerformer {
         }
     }
 
-    private String receiveAnswer(){
+    private String receiveAnswer() {
         return ioService.readStringWithPromptAndValues("Please enter your choice: ",
-                "A","B","C","D","E");
+                "A", "B", "C", "D", "E");
     }
 
 }

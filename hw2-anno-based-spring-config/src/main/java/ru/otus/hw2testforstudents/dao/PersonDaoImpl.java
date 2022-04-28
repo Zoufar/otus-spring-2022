@@ -1,13 +1,13 @@
 package ru.otus.hw2testforstudents.dao;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import ru.otus.hw2testforstudents.domain.Person;
 import ru.otus.hw2testforstudents.model.Quiz;
 import ru.otus.hw2testforstudents.service.QuizLoader;
 
 @RequiredArgsConstructor
-@Repository
+@Component
 public class PersonDaoImpl implements PersonDao {
 
     private final QuizLoader quizLoader;
