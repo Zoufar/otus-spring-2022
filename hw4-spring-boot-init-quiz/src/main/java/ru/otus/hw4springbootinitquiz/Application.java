@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import ru.otus.hw4springbootinitquiz.config.AppsProps;
 import ru.otus.hw4springbootinitquiz.quiz.StudentQuizImpl;
-import ru.otus.hw4springbootinitquiz.service.locale.LanguageSettingService;
+
 
 @SpringBootApplication
 @EnableConfigurationProperties(AppsProps.class)
@@ -17,8 +17,7 @@ public class Application {
 
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
 
-		do {ctx.getBean(LanguageSettingService.class).receiveAndSetLocaleLanguage();}
-		while(ctx.getBean(StudentQuizImpl.class).start());
+		ctx.getBean(StudentQuizImpl.class).start();
 
 		((ConfigurableApplicationContext) ctx).close();
 

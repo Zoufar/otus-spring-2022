@@ -5,8 +5,6 @@ import ru.otus.hw4springbootinitquiz.service.locale.QuizMessageSource;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -24,20 +22,6 @@ public class IOServiceStreams implements IOService {
     @Override
     public void outputString(String s) {
         output.println(s);
-    }
-
-    @Override
-    public String readStringWithPromptAndValues(String prompt, String... validValues) {
-        String inputString = readStringWithPrompt(prompt);
-        if (validValues.length == 0) return inputString;
-
-        List<String> validValuesList = Arrays.asList(validValues);
-
-        while (!validValuesList.contains(inputString)) {
-            inputString = readStringWithPrompt(msg.getMessage("string.notvalidentry") +
-                    validValuesList + ".\n" + msg.getMessage("string.tryoncemore"));
-        }
-        return inputString;
     }
 
     @Override

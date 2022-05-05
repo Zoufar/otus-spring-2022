@@ -8,12 +8,10 @@ import java.util.List;
 @Getter
 public class Quiz {
     private final List<List<String>> quizList;
-    private final QuizLoader quizLoader;
     private final List<String> quizValidAnswersSet;
 
     public Quiz(QuizLoader quizLoader) {
-        this.quizLoader = quizLoader;
-        quizList = this.quizLoader.loadQuiz();
+        quizList = quizLoader.loadQuiz();
         quizValidAnswersSet = quizList.remove(0);
     }
 

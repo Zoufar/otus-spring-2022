@@ -23,7 +23,7 @@ public class QuizCSVLoader implements QuizLoader {
         this.appsProps = appsProps;
     }
 
-    public List loadQuiz() {
+    public List<List<String>> loadQuiz() {
         List<List<String>> quizList = new ArrayList<>();
         InputStream inputStreamfromCSVfile =
                 getClass().getClassLoader().getResourceAsStream(appsProps.getLocaleFileNameCsv());
