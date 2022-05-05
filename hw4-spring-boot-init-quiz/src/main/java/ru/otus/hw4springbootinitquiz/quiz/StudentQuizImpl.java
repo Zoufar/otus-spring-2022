@@ -7,10 +7,9 @@ import ru.otus.hw4springbootinitquiz.domain.Person;
 import ru.otus.hw4springbootinitquiz.service.IOService;
 import ru.otus.hw4springbootinitquiz.service.PersonService;
 import ru.otus.hw4springbootinitquiz.service.QuizPerformer;
+import ru.otus.hw4springbootinitquiz.service.QuizResultEvaluatorImpl;
 import ru.otus.hw4springbootinitquiz.service.locale.LanguageSettingService;
 import ru.otus.hw4springbootinitquiz.service.locale.QuizMessageSource;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -22,6 +21,7 @@ public class StudentQuizImpl implements StudentQuiz {
     private final IOService ioService;
     private final QuizPerformer quizPerformer;
     private final QuizMessageSource msg;
+    private final QuizResultEvaluatorImpl quizResultEvaluator;
 
     @Override
     public void start() {
@@ -33,7 +33,7 @@ public class StudentQuizImpl implements StudentQuiz {
 
     @Override
     public boolean runQuiz() {
-
+        int result = 0;
         int passThreshold = appsProps.getPassThreshold();
 
         ioService.outputString(msg.getMessage("string.start") + "\n"
@@ -41,15 +41,14 @@ public class StudentQuizImpl implements StudentQuiz {
                 + passThreshold + ".");
         Person student = studentService.enterPersonByName();
 
-        List<String> result = quizPerformer.performQuiz(student);
-        student.enterQuizResult(result);
+        quizPerformer.performQuiz(student);
 
-        int resultEvaluated = student.evaluateQuizResult();
-        String isThresholdPassed = resultEvaluated < passThreshold ?
+        result = quizResultEvaluator.evaluateQuizResult(student.getQuiz());
+        String isThresholdPassed = result < passThreshold ?
                 msg.getMessage("string.notpassed") :
                 msg.getMessage("string.passed");
         ioService.outputString(msg.getMessage("string.result") +
-                resultEvaluated + ".\n" + isThresholdPassed);
+                result + ".\n" + isThresholdPassed);
 
         String key = ioService.readStringWithPrompt("\n" + msg.getMessage("string.continue"));
 

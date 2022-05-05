@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.otus.hw4springbootinitquiz.domain.Person;
 import ru.otus.hw4springbootinitquiz.service.locale.QuizMessageSource;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,16 +17,13 @@ public class QuizPerformerImpl implements QuizPerformer {
     private final QuizMessageSource msg;
 
     @Override
-    public List<String> performQuiz(Person person) {
+    public void performQuiz(Person person) {
         ioService.outputString(msg.getMessage("string.quiz", person.getName(),
                 person.getSurname()));
-        List<String> result = new ArrayList<>();
-
-        for (List list : person.getQuiz().getQuizList()) {
+        for (List<String> list : person.getQuiz().getQuizList()) {
             askQuestionFromList(list);
-            result.add(receiveAnswer(person.getQuiz().getQuizValidAnswersSet()));
+            list.set(0, receiveAnswer(person.getQuiz().getQuizValidAnswersSet()));
         }
-        return result;
     }
 
     private void askQuestionFromList(List<String> list) {

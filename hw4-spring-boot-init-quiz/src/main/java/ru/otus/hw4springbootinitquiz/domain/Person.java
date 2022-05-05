@@ -18,14 +18,6 @@ public class Person {
         this.quiz = quiz;
     }
 
-    public void enterQuizResult (List<String> result ){
-        quiz.enterResults(result);
-    }
-
-    public int evaluateQuizResult (){
-        return quiz.evaluateQuizResult ();
-    }
-
     @Override
     public String toString() {
         return "name+surname = " + this.name+" "+ this.surname;
