@@ -28,5 +28,6 @@ public class LanguageSettingService {
 
         quizMessageSource.setLanguageTag(languageTag);
         appsProps.setLocaleFileNameCsv(languageTag);
+        languageTag= "";
     }
 }
