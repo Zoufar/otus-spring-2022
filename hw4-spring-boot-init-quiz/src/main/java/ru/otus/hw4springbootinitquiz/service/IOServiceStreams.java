@@ -16,7 +16,9 @@ public class IOServiceStreams implements IOService {
 
     public IOServiceStreams(PrintStream outputStream, InputStream inputStream) {
         output = outputStream;
-        input = new Scanner(inputStream, "Cp866");
+        input = new Scanner(inputStream);
+ //    this version was workable on Win7 machine:
+ //     input = new Scanner(inputStream, "Cp866");
     }
 
     @Override
